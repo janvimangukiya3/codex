@@ -58,7 +58,15 @@ def get_model_performance():
     from sklearn.model_selection import train_test_split
     
     # Prepare data
-    X = df.drop(['Delivery_Time', 'Delivery_person_ID'], axis=1, errors='ignore')
+    # Prepare data
+    features = [
+        "Delivery_person_Age",
+        "Delivery_person_Ratings",
+        "Type_of_vehicle",
+        "Type_of_order",
+        "Distance_km"
+    ]
+    X = df[features]
     y = df['Delivery_Time']
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -116,14 +124,15 @@ def predict():
         vehicle = int(data["vehicle"])
         order = int(data["order"])
         
-        # Create input dataframe
-        input_df = pd.DataFrame([{
-            "Delivery_person_Age": age,
-            "Delivery_person_Ratings": rating,
-            "Type_of_order": order,
-            "Type_of_vehicle": vehicle,
-            "Distance_km": distance
-        }])
+        # Create input dataframe ensuring correct column order
+        input_data = {
+            "Delivery_person_Age": [age],
+            "Delivery_person_Ratings": [rating],
+            "Type_of_vehicle": [vehicle],
+            "Type_of_order": [order],
+            "Distance_km": [distance]
+        }
+        input_df = pd.DataFrame(input_data)
         
         prediction = model.predict(input_df)[0]
         
