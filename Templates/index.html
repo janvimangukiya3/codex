@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Food Delivery Time Predictor{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">
+            <i class="fas fa-rocket"></i>
+            Food Delivery Time Predictor
+        </h1>
+        <p class="hero-subtitle">
+            AI-Powered Machine Learning System for Accurate Delivery Time Estimation
+        </p>
+        <div class="hero-buttons">
+            <a href="/predict-page" class="btn btn-primary">
+                <i class="fas fa-play"></i> Try Prediction
+            </a>
+            <a href="/analytics" class="btn btn-secondary">
+                <i class="fas fa-chart-bar"></i> View Analytics
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ stats.total_deliveries }}</h3>
+                    <p>Total Deliveries</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ stats.avg_delivery_time }} min</h3>
+                    <p>Avg Delivery Time</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <i class="fas fa-route"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ stats.avg_distance }} km</h3>
+                    <p>Avg Distance</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{{ stats.avg_rating }}</h3>
+                    <p>Avg Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section">
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Machine Learning</h3>
+                <p>Advanced Random Forest algorithm trained on real delivery data for accurate predictions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Data Analytics</h3>
+                <p>Comprehensive visualizations and insights from delivery patterns and trends</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Responsive Design</h3>
+                <p>Fully responsive interface that works seamlessly on all devices</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Real-time Prediction</h3>
+                <p>Instant delivery time estimates based on multiple factors</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data-Driven</h3>
+                <p>Built on extensive historical delivery data for reliable results</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Optimized Model</h3>
+                <p>Fine-tuned hyperparameters for maximum accuracy and performance</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <div class="container">
+        <h2>Ready to Predict Delivery Times?</h2>
+        <p>Experience the power of AI-driven delivery time estimation</p>
+        <a href="/predict-page" class="btn btn-large">
+            <i class="fas fa-arrow-right"></i> Get Started Now
+        </a>
+    </div>
+</div>
+{% endblock %}

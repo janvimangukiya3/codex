@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}Predict - Food Delivery Time Predictor{% endblock %}
+
+{% block content %}
+<div class="predict-section">
+    <div class="container">
+        <div class="predict-header">
+            <h1><i class="fas fa-calculator"></i> Delivery Time Prediction</h1>
+            <p>Enter delivery details to get an accurate time estimate</p>
+        </div>
+
+        <div class="predict-container">
+            <div class="predict-form-wrapper">
+                <form id="predictionForm" class="prediction-form">
+                    <div class="form-group">
+                        <label for="age">
+                            <i class="fas fa-user"></i> Delivery Partner Age
+                        </label>
+                        <input type="number" id="age" name="age" min="18" max="65" required 
+                               placeholder="Enter age (18-65)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">
+                            <i class="fas fa-star"></i> Delivery Partner Rating
+                        </label>
+                        <input type="number" id="rating" name="rating" min="1" max="5" step="0.1" required 
+                               placeholder="Enter rating (1.0-5.0)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distance">
+                            <i class="fas fa-route"></i> Distance (km)
+                        </label>
+                        <input type="number" id="distance" name="distance" min="0.1" step="0.1" required 
+                               placeholder="Enter distance in km">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle">
+                            <i class="fas fa-motorcycle"></i> Vehicle Type
+                        </label>
+                        <select id="vehicle" name="vehicle" required>
+                            <option value="">Select Vehicle Type</option>
+                            <option value="1">Motorcycle</option>
+                            <option value="2">Scooter</option>
+                            <option value="3">Electric Vehicle</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order">
+                            <i class="fas fa-utensils"></i> Order Type
+                        </label>
+                        <select id="order" name="order" required>
+                            <option value="">Select Order Type</option>
+                            <option value="0">Snacks</option>
+                            <option value="1">Meal</option>
+                            <option value="2">Drinks</option>
+                            <option value="3">Buffet</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-magic"></i> Predict Delivery Time
+                    </button>
+                </form>
+            </div>
+
+            <div class="result-wrapper">
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Calculating...</p>
+                </div>
+
+                <div id="resultCard" class="result-card" style="display: none;">
+                    <div class="result-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Estimated Delivery Time</h2>
+                    <div class="result-time">
+                        <span id="predictionResult">--</span>
+                        <span class="time-unit">minutes</span>
+                    </div>
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Prediction based on ML model trained on historical data</span>
+                        </div>
+                    </div>
+                    <button onclick="resetForm()" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> New Prediction
+                    </button>
+                </div>
+
+                <div id="errorCard" class="error-card" style="display: none;">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Prediction Error</h3>
+                    <p id="errorMessage">Something went wrong. Please try again.</p>
+                    <button onclick="resetForm()" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const form = document.getElementById('predictionForm');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const resultCard = document.getElementById('resultCard');
+    const errorCard = document.getElementById('errorCard');
+    const predictionResult = document.getElementById('predictionResult');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Hide previous results
+        resultCard.style.display = 'none';
+        errorCard.style.display = 'none';
+        loadingSpinner.style.display = 'flex';
+
+        // Get form data
+        const formData = {
+            age: parseFloat(document.getElementById('age').value),
+            rating: parseFloat(document.getElementById('rating').value),
+            distance: parseFloat(document.getElementById('distance').value),
+            vehicle: parseInt(document.getElementById('vehicle').value),
+            order: parseInt(document.getElementById('order').value)
+        };
+
+        try {
+            const response = await fetch('/api/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            loadingSpinner.style.display = 'none';
+
+            if (data.success) {
+                predictionResult.textContent = data.prediction;
+                resultCard.style.display = 'block';
+                resultCard.classList.add('fade-in');
+            } else {
+                errorMessage.textContent = data.error || 'Prediction failed';
+                errorCard.style.display = 'block';
+            }
+        } catch (error) {
+            loadingSpinner.style.display = 'none';
+            errorMessage.textContent = 'Network error. Please check your connection.';
+            errorCard.style.display = 'block';
+        }
+    });
+
+    function resetForm() {
+        form.reset();
+        resultCard.style.display = 'none';
+        errorCard.style.display = 'none';
+    }
+</script>
+{% endblock %}

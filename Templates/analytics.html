@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Food Delivery Time Predictor{% endblock %}
+
+{% block content %}
+<div class="analytics-section">
+    <div class="container">
+        <div class="analytics-header">
+            <h1><i class="fas fa-chart-line"></i> Data Analytics Dashboard</h1>
+            <p>Comprehensive insights and visualizations from delivery data</p>
+        </div>
+
+        <!-- Model Performance Section -->
+        <div class="performance-section">
+            <h2 class="section-title">Model Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>{{ performance.accuracy }}%</h3>
+                        <p>Model Accuracy (R²)</p>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: {{ performance.accuracy }}%; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>{{ performance.mae }}</h3>
+                        <p>Mean Absolute Error (MAE)</p>
+                        <span class="metric-badge">minutes</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-square-root-alt"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>{{ performance.rmse }}</h3>
+                        <p>Root Mean Squared Error</p>
+                        <span class="metric-badge">minutes</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3>{{ performance.r2 }}</h3>
+                        <p>R² Score</p>
+                        <span class="metric-badge">coefficient</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <h2 class="section-title">Data Visualizations</h2>
+            
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> Delivery Time Distribution</h3>
+                    </div>
+                    <div id="chart1" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-scatter"></i> Distance vs Time Correlation</h3>
+                    </div>
+                    <div id="chart2" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-star"></i> Rating Impact Analysis</h3>
+                    </div>
+                    <div id="chart3" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-motorcycle"></i> Vehicle Type Comparison</h3>
+                    </div>
+                    <div id="chart4" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-pizza-slice"></i> Order Type Analysis</h3>
+                    </div>
+                    <div id="chart5" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-users"></i> Age Group Performance</h3>
+                    </div>
+                    <div id="chart6" class="chart-container">
+                        <div class="chart-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading chart...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insights Section -->
+        <div class="insights-section">
+            <h2 class="section-title">Key Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Distance Impact</h4>
+                    <p>Strong positive correlation between delivery distance and time, with longer distances requiring proportionally more time.</p>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-star"></i>
+                    <h4>Rating Influence</h4>
+                    <p>Higher-rated delivery partners tend to complete deliveries faster, indicating experience and efficiency.</p>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-motorcycle"></i>
+                    <h4>Vehicle Efficiency</h4>
+                    <p>Different vehicle types show varying performance levels, with motorcycles generally being faster for short distances.</p>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Order Complexity</h4>
+                    <p>Buffet orders typically take longer due to preparation time and larger order sizes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Load all charts with responsive configuration
+    async function loadCharts() {
+        const charts = [
+            { id: 'chart1', endpoint: '/api/charts/delivery-time-distribution' },
+            { id: 'chart2', endpoint: '/api/charts/distance-vs-time' },
+            { id: 'chart3', endpoint: '/api/charts/rating-impact' },
+            { id: 'chart4', endpoint: '/api/charts/vehicle-comparison' },
+            { id: 'chart5', endpoint: '/api/charts/order-type-analysis' },
+            { id: 'chart6', endpoint: '/api/charts/age-performance' }
+        ];
+
+        for (const chart of charts) {
+            const container = document.getElementById(chart.id);
+            try {
+                const response = await fetch(chart.endpoint);
+                const data = await response.json();
+                
+                // Clear loading indicator
+                container.innerHTML = '';
+                
+                // Configure responsive layout
+                const layout = {
+                    ...data.layout,
+                    autosize: true,
+                    margin: { l: 50, r: 30, t: 50, b: 50 },
+                    font: { size: 12 }
+                };
+                
+                const config = {
+                    responsive: true,
+                    displayModeBar: true,
+                    displaylogo: false,
+                    modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d']
+                };
+                
+                Plotly.newPlot(chart.id, data.data, layout, config);
+            } catch (error) {
+                console.error(`Error loading ${chart.id}:`, error);
+                container.innerHTML = 
+                    '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #f5576c; flex-direction: column; gap: 10px;"><i class="fas fa-exclamation-triangle" style="font-size: 2rem;"></i><p>Failed to load chart</p></div>';
+            }
+        }
+    }
+
+    // Load charts when page loads
+    window.addEventListener('load', loadCharts);
+    
+    // Reload charts on window resize for better responsiveness
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            document.querySelectorAll('.chart-container').forEach(container => {
+                if (container.querySelector('.js-plotly-plot')) {
+                    Plotly.Plots.resize(container);
+                }
+            });
+        }, 250);
+    });
+</script>
+{% endblock %}

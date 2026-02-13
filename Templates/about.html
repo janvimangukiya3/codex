@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}About - Food Delivery Time Predictor{% endblock %}
+
+{% block content %}
+<div class="about-section">
+    <div class="container">
+        <div class="about-header">
+            <h1><i class="fas fa-info-circle"></i> About This Project</h1>
+            <p>Understanding the technology behind accurate delivery time predictions</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-card">
+                <h2><i class="fas fa-bullseye"></i> Problem Statement</h2>
+                <p>
+                    Food delivery platforms operate in highly dynamic urban environments where delivery time is influenced 
+                    by multiple factors such as delivery distance, order characteristics, delivery partner efficiency, and 
+                    environmental conditions. Accurate delivery time estimation is critical for customer satisfaction, 
+                    resource planning, and operational optimization.
+                </p>
+                <p>
+                    Traditional estimation methods rely on average delivery times or static distance-based rules, which fail 
+                    to capture real-world variability and non-linear relationships between influencing factors.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-rocket"></i> Our Solution</h2>
+                <p>
+                    We developed an intelligent machine learning system that predicts delivery time using a 
+                    <strong>Random Forest Regressor</strong> trained on historical delivery data. The model considers 
+                    multiple features including:
+                </p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Delivery partner age and experience</li>
+                    <li><i class="fas fa-check"></i> Delivery partner ratings</li>
+                    <li><i class="fas fa-check"></i> Delivery distance in kilometers</li>
+                    <li><i class="fas fa-check"></i> Type of vehicle used</li>
+                    <li><i class="fas fa-check"></i> Type of order being delivered</li>
+                </ul>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-cogs"></i> Technical Implementation</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Machine Learning</h4>
+                        <p>Random Forest Regressor with optimized hyperparameters</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <h4>Backend</h4>
+                        <p>Flask web framework with RESTful API</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Visualization</h4>
+                        <p>Plotly for interactive data visualizations</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <h4>Data Processing</h4>
+                        <p>Pandas and NumPy for data manipulation</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-code"></i>
+                        <h4>Frontend</h4>
+                        <p>Modern HTML5, CSS3, and JavaScript</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Responsive</h4>
+                        <p>Mobile-first design approach</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-tasks"></i> Project Workflow</h2>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Data Collection</h4>
+                            <p>Gathered historical delivery data with multiple features</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Data Preprocessing</h4>
+                            <p>Cleaned data, handled missing values, and encoded features</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Feature Engineering</h4>
+                            <p>Selected relevant features and created derived variables</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Model Training</h4>
+                            <p>Trained Random Forest model with hyperparameter tuning</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Model Evaluation</h4>
+                            <p>Evaluated using MAE, RMSE, and R² metrics</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Deployment</h4>
+                            <p>Deployed as a web application with interactive UI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-chart-bar"></i> Model Performance</h2>
+                <p>
+                    Our optimized Random Forest model achieves excellent performance metrics:
+                </p>
+                <div class="performance-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>High R² score indicating strong predictive power</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Low MAE and RMSE for accurate predictions</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Robust performance across different scenarios</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-lightbulb"></i> Business Impact</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <i class="fas fa-smile"></i>
+                        <h4>Customer Satisfaction</h4>
+                        <p>Accurate time estimates improve customer experience and trust</p>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Operational Efficiency</h4>
+                        <p>Better resource allocation and delivery partner management</p>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h4>Cost Optimization</h4>
+                        <p>Reduced operational costs through efficient routing</p>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-users"></i>
+                        <h4>Partner Performance</h4>
+                        <p>Insights into delivery partner efficiency and training needs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-road"></i> Future Enhancements</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-arrow-right"></i> Integration with real-time traffic data</li>
+                    <li><i class="fas fa-arrow-right"></i> Weather condition impact analysis</li>
+                    <li><i class="fas fa-arrow-right"></i> Time-of-day and day-of-week patterns</li>
+                    <li><i class="fas fa-arrow-right"></i> Restaurant preparation time modeling</li>
+                    <li><i class="fas fa-arrow-right"></i> Deep learning models for improved accuracy</li>
+                    <li><i class="fas fa-arrow-right"></i> Mobile application development</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
